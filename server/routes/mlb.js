@@ -4,13 +4,13 @@ const router = express.Router();
 const MLBModel = require('../models/MLB');
 const logger = require('../utils/logger');
 
-// Validation middleware
-const validateTeamQuery = [
-  body('team').optional().isString().trim().isLength({ min: 2, max: 50 })
-    .withMessage('Team name must be between 2 and 50 characters'),
-  body('year').optional().isInt({ min: 1900, max: new Date().getFullYear() })
-    .withMessage('Year must be between 1900 and current year')
-];
+// Validation middleware (currently unused but ready for future use)
+// const validateTeamQuery = [
+//   body('team').optional().isString().trim().isLength({ min: 2, max: 50 })
+//     .withMessage('Team name must be between 2 and 50 characters'),
+//   body('year').optional().isInt({ min: 1900, max: new Date().getFullYear() })
+//     .withMessage('Year must be between 1900 and current year')
+// ];
 
 // Helper function to handle validation errors
 const handleValidationErrors = (req, res, next) => {

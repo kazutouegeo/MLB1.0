@@ -231,11 +231,11 @@ class MLBModel {
     return filteredStats;
   }
 
-  async search(query, type = 'all') {
+  async search(query, _type = 'all') {
     const results = [];
     const queryLower = query.toLowerCase();
 
-    if (type === 'all' || type === 'teams') {
+    if (_type === 'all' || _type === 'teams') {
       const teamResults = this.teams.filter(team =>
         team.name.toLowerCase().includes(queryLower) ||
         team.city.toLowerCase().includes(queryLower) ||
@@ -244,7 +244,7 @@ class MLBModel {
       results.push(...teamResults);
     }
 
-    if (type === 'all' || type === 'players') {
+    if (_type === 'all' || _type === 'players') {
       const playerResults = this.players.filter(player =>
         player.name.toLowerCase().includes(queryLower) ||
         player.position.toLowerCase().includes(queryLower)

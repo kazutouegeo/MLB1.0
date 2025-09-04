@@ -1,0 +1,44 @@
+# Docker Compose file for MLB 1.0 Application
+version: '3.8'
+
+services:
+  mlb-app:
+    build: .
+    container_name: mlb-1.0-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - RATE_LIMIT_WINDOW_MS=900000
+      - RATE_LIMIT_MAX=100
+    volumes:
+      - ./logs:/app/logs
+      - ./public/images:/app/public/images
+    restart: unless-stopped
+    networks:
+      - mlb-network
+    
+  # Optional: Add nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: mlb-1.0-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - mlb-app
+    restart: unless-stopped
+    networks:
+      - mlb-network
+
+networks:
+  mlb-network:
+    driver: bridge
+
+volumes:
+  logs:
+  images:
