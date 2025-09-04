@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MLB 1.0 - Major League Baseball Statistics and Information">
+    <meta name="keywords" content="MLB, baseball, statistics, teams, players, standings">
+    <title>MLB 1.0 - Baseball Statistics & Info</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading MLB 1.0...</h2>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="/images/mlb-logo.svg" alt="MLB Logo" class="nav-logo">
+                    <h1>MLB 1.0</h1>
+                </div>
+                
+                <button class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#teams" class="nav-link">Teams</a>
+                    <a href="#standings" class="nav-link">Standings</a>
+                    <a href="#players" class="nav-link">Players</a>
+                    <a href="#stats" class="nav-link">Statistics</a>
+                </div>
+                
+                <div class="nav-search">
+                    <input type="text" id="search-input" placeholder="Search teams, players..." class="search-input">
+                    <button id="search-btn" class="search-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to MLB 1.0</h1>
+                <p class="hero-subtitle">Your comprehensive source for Major League Baseball statistics, team information, and player data</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="explore-teams">Explore Teams</button>
+                    <button class="btn btn-secondary" id="view-standings">View Standings</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="baseball-animation">
+                    <div class="baseball"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teams Section -->
+        <section id="teams" class="section teams-section">
+            <div class="container">
+                <h2 class="section-title">MLB Teams</h2>
+                <div class="section-filters">
+                    <button class="filter-btn active" data-league="all">All Teams</button>
+                    <button class="filter-btn" data-league="American">American League</button>
+                    <button class="filter-btn" data-league="National">National League</button>
+                </div>
+                <div id="teams-grid" class="teams-grid">
+                    <!-- Teams will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Standings Section -->
+        <section id="standings" class="section standings-section">
+            <div class="container">
+                <h2 class="section-title">Current Standings</h2>
+                <div class="standings-controls">
+                    <select id="standings-year" class="select-input">
+                        <option value="2024">2024 Season</option>
+                        <option value="2023">2023 Season</option>
+                    </select>
+                </div>
+                <div id="standings-table" class="standings-table">
+                    <!-- Standings will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Players Section -->
+        <section id="players" class="section players-section">
+            <div class="container">
+                <h2 class="section-title">Players</h2>
+                <div class="players-controls">
+                    <select id="player-team" class="select-input">
+                        <option value="">All Teams</option>
+                    </select>
+                    <select id="player-position" class="select-input">
+                        <option value="">All Positions</option>
+                        <option value="C">Catcher</option>
+                        <option value="1B">First Base</option>
+                        <option value="2B">Second Base</option>
+                        <option value="3B">Third Base</option>
+                        <option value="SS">Shortstop</option>
+                        <option value="OF">Outfield</option>
+                        <option value="P">Pitcher</option>
+                    </select>
+                </div>
+                <div id="players-grid" class="players-grid">
+                    <!-- Players will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="stats" class="section stats-section">
+            <div class="container">
+                <h2 class="section-title">Statistics</h2>
+                <div class="stats-controls">
+                    <select id="stats-type" class="select-input">
+                        <option value="batting">Batting Stats</option>
+                        <option value="pitching">Pitching Stats</option>
+                    </select>
+                    <select id="stats-team" class="select-input">
+                        <option value="">All Teams</option>
+                    </select>
+                </div>
+                <div id="stats-content" class="stats-content">
+                    <!-- Statistics will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>MLB 1.0</h3>
+                    <p>Your trusted source for MLB statistics and information</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#teams">Teams</a></li>
+                            <li><a href="#standings">Standings</a></li>
+                            <li><a href="#players">Players</a></li>
+                            <li><a href="#stats">Statistics</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="/api/mlb/teams">API</a></li>
+                            <li><a href="/health">Health Check</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MLB 1.0. Built with ❤️ for baseball fans.</p>
+                <div class="footer-status">
+                    <span id="api-status" class="status-indicator">
+                        <span class="status-dot"></span>
+                        API Status
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Error Toast -->
+    <div id="error-toast" class="toast toast-error">
+        <div class="toast-content">
+            <span class="toast-message"></span>
+            <button class="toast-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="toast toast-success">
+        <div class="toast-content">
+            <span class="toast-message"></span>
+            <button class="toast-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/js/api.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
