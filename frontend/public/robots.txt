@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: http://localhost:3000/sitemap.xml
+
+# Disallow crawling of admin and API routes
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
